@@ -2,7 +2,7 @@
 
 Welcome to the world of Black Jack! This Back-End service powers your gaming app, connecting it seamlessly to a robust MongoDB database. To start your local server and unleash the magic, follow these simple steps:
 
-1. <b>Git Clone:</b> Begin by cloning the repository.     
+1. <b>Download repo to your local maschine:</b>
    Open your terminal and run this command:
    `git clone https://github.com/aandrushko/black-jack-BE.git`        
    This will bring the power of Black Jack to your machine.
@@ -13,12 +13,12 @@ Welcome to the world of Black Jack! This Back-End service powers your gaming app
 
 4. <b>Install Dependencies:</b>            
    Execute this command: `npm install`
-   The server will gather its strength and prepare for action.
 
 6. <b>Start the Server:</b> The moment you've been waiting for!
-   Launch your local server and let the games begin with: `nodemon app.js`
+   Launch your local server and let the games begin with: `npm run start`
+   If you have installed `nodemon` and want to contribute => `npm run start:dev` (nodemon will watch your changes and rebuild app for you)
 
-To run tests, use the command: `npm test`.
+7. To run tests, use the command: `npm test`.
 
 Your Black Jack Back-End is now alive, ready to serve your gaming app and communicate with the powerful MongoDB.
 
