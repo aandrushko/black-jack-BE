@@ -22,6 +22,6 @@ To run tests, use the command: `npm test`.
 
 Your Black Jack Back-End is now alive, ready to serve your gaming app and communicate with the powerful MongoDB.
 
-Know the jump to FE part of this game, and follow the instructions in it.
+Now jump to the FE part of this game, and follow the instructions in it.
 
 🃏 Get Your Game On!
