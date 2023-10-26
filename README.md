@@ -9,6 +9,9 @@ Welcome to the world of Black Jack! This Back-End service powers your gaming app
  - install dependencies: `npm install` <br/>
  
  - Launch your local server and let the games begin with: `npm run start` <br/>
+ **After you start the server on your local machine, it starts to be visible for frontend app (the second part of this project).**<br/>
+  **To see it in action you need to start the FE part of this game.<br/>**
+  <a href='https://github.com/aandrushko/black-jack-FE'>Follow the link to have the rest of instructions</a><br/>
  
  - If you have installed `nodemon` and want to contribute => `npm run start:dev` <br/> (nodemon will watch your changes and rebuild the app for you) <br/>
  
@@ -16,7 +19,6 @@ Welcome to the world of Black Jack! This Back-End service powers your gaming app
 
 <em>Your Black Jack Back-End is now alive, ready to serve your gaming app and communicate with the powerful MongoDB. <em/> <br/>
 
-Now jump to the <a href='https://github.com/aandrushko/black-jack-FE'>FE part</a> of this game, and follow the instructions in it. <br/>
 
 **Briefly about how it works**
 
@@ -39,9 +41,9 @@ To continue the round dealer needs to take extra cards until his score is 17 or 
 
 **4. submit_player_stay** - this endpoint reveals the dealer's hand and does a couple of checks for dealer bust/dealer low hand / compare score / declare winner. 
 
-Service also scores aces with check for the best possible score to avoid a bust. (see `./services/cardService.js` -- `getTheFinalPlayerScoreToCompare`)
+Service also scores aces with a check for the best possible score to avoid a bust. (see `./services/cardService.js` -- `getTheFinalPlayerScoreToCompare`)
 
-**5.  get_game_details** - the name says about it's nature. During the round, we need to know how each event affects the game state.
+**5.  get_game_details** - the name says about its nature. During the round, we need to know how each event affects the game state.
 
 
 See the flow chart to have a better understanding of BS
