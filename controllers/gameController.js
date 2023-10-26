@@ -1,6 +1,4 @@
-
 const Game = require('../models/gameModel');
-const {CARDS} = require('../constants/constants')
 
 const {
     getCardScore,
@@ -13,7 +11,6 @@ const {
     getTheFinalPlayerScoreToCompare,
     dealTwoCardsForDealerAndPlayer,
     dealCardForPerson,
-
 } = require('../services/cardsService');
 
 const submit_player_hit = async (req, res) => {
@@ -89,7 +86,6 @@ const submit_player_hit = async (req, res) => {
     }
    
 };
-
 const submit_dealer_hit = async (req, res) => {
     try {
         // get Game state
@@ -164,7 +160,6 @@ const submit_dealer_hit = async (req, res) => {
     }
    
 };
-
 const submit_player_stay = async (req,res) => {
     try {
         const gameId = req.params.gameId;
@@ -213,7 +208,6 @@ const submit_player_stay = async (req,res) => {
       });
     }
 };
-
 const get_game_details = async (req, res) => {
     try {
         const gameId = req.params.gameId;
@@ -231,7 +225,6 @@ const get_game_details = async (req, res) => {
         })
     }
 }
-
 const start_new_game = async (req, res) => {
 
     const {dealerHand, playerHand, cardsInDeck} = dealTwoCardsForDealerAndPlayer();
