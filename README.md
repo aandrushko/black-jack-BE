@@ -45,7 +45,7 @@ Service also scores aces with check for the best possible score to avoid a bust.
 
 
 See the flow chart to have a better understanding of BS
-[Fame flow chart](https://github.com/aandrushko/black-jack-BE/files/13182195/Flowchart.pdf)
+[Game schema pdf](https://github.com/aandrushko/black-jack-BE/files/13182195/Flowchart.pdf)
 
 
 🃏 Get Your Game On!
