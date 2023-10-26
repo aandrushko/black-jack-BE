@@ -1,13 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const gameRouter = require('./routers/gameRoutes');
-
-
 const app = express();
-const dbURI = 'mongodb+srv://andrii:andrii321@sandboxmdb.7jtpylg.mongodb.net/test-node?retryWrites=true&w=majority';
 
-const whitelist = ['http://localhost:5173', 'http://127.0.0.1:5173/'];
+const whitelist = [`http://localhost:${process.env.FE_PORT}`, `http://127.0.0.1:${process.env.FE_PORT}/`];
 
 const corsOptions = {
     credentials: true,
@@ -19,9 +17,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-mongoose.connect(dbURI)
+mongoose.connect(process.env.DB_URI)
     .then (() => {        
-        app.listen(3000);
+        app.listen(process.env.PORT);
         console.log('Database connected')
     })
     .catch(e => console.log(e));

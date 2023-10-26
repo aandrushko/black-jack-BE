@@ -11,7 +11,8 @@ const {
     hasDealerCompleteHand,
     formFinalResult,
     getTheFinalPlayerScoreToCompare,
-    getShuffledCards
+    dealTwoCardsForDealerAndPlayer,
+    dealCardForPerson,
 
 } = require('../services/cardsService');
 
@@ -20,7 +21,6 @@ const submit_player_hit = async (req, res) => {
         // get Game state
         const gameId = req.params.gameId;
         const game = await Game.findById(gameId);
-        const [newCardForPlayer, ...restCardsInDeck] = game.cardsInDeck;
 
         if (game.gameStatus.isFinished) {
             return res.status(400).json({
@@ -28,9 +28,11 @@ const submit_player_hit = async (req, res) => {
             });
             
         }
+
         // hit one card for player from the deck
+        const { personsHandWithNewCard: newPlayerHand, restCardsInDeck } = dealCardForPerson(game.playerHand, game.cardsInDeck);
         await Game.findByIdAndUpdate(gameId, {
-            playerHand: [...game.playerHand, newCardForPlayer],
+            playerHand: newPlayerHand,
             cardsInDeck: restCardsInDeck
         });
         
@@ -93,17 +95,17 @@ const submit_dealer_hit = async (req, res) => {
         // get Game state
         const gameId = req.params.gameId;
         const game = await Game.findById(gameId);
-        const [newCardForToDeal, ...restCardsInDeck] = game.cardsInDeck;
+
 
         if (game.gameStatus.isFinished) {
             return res.status(400).json({
                 message: 'Game already finished'
             });
-            
         }
         // hit one card for dealer from the deck
+        const { personsHandWithNewCard: newDealerHand, restCardsInDeck } = dealCardForPerson(game.dealerHand, game.cardsInDeck);
         await Game.findByIdAndUpdate(gameId, {
-            dealerHand: [...game.dealerHand, newCardForToDeal],
+            dealerHand: newDealerHand,
             cardsInDeck: restCardsInDeck
         });
         
@@ -231,26 +233,8 @@ const get_game_details = async (req, res) => {
 }
 
 const start_new_game = async (req, res) => {
-    const shuffledDeck = getShuffledCards(CARDS);   
-    const dealerHand = [
-      {
-        ...shuffledDeck[0],
-        isHidden: false,
-     },
-     {
-        ...shuffledDeck[2],
-        isHidden: true,
-     }
-    ];
-    const playerHand = [
-        {
-            ...shuffledDeck[1],            
-         },
-         {
-            ...shuffledDeck[3],           
-         }
-    ]
-    const cardsInDeck = shuffledDeck.slice(4);
+
+    const {dealerHand, playerHand, cardsInDeck} = dealTwoCardsForDealerAndPlayer();
 
     try {
         const game = new Game({

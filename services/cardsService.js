@@ -1,12 +1,47 @@
-  
-  const getShuffledCards = (deck) => {
+const {CARDS} = require("../constants/constants");
+
+const getShuffledCards = (deck) => {
     for (let i = deck.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [deck[i], deck[j]] = [deck[j], deck[i]];
     }
     return deck;
   }
+  const dealTwoCardsForDealerAndPlayer = () => {
+    const shuffledDeck = getShuffledCards(CARDS);
+    const dealerHand = [
+      {
+        ...shuffledDeck[0],
+        isHidden: false,
+      },
+      {
+        ...shuffledDeck[2],
+        isHidden: true,
+      }
+    ];
+    const playerHand = [
+      {
+        ...shuffledDeck[1],
+      },
+      {
+        ...shuffledDeck[3],
+      }
+    ]
+    const cardsInDeckThatRemaining = shuffledDeck.slice(4);
+    return {
+      dealerHand,
+      playerHand,
+      cardsInDeck: cardsInDeckThatRemaining,
+    }
+  }
 
+  const dealCardForPerson = (personHand, cardsInDeck) => {
+    const [newCard, ...restCardsInDeck] = cardsInDeck;
+    return {
+      personsHandWithNewCard: [...personHand, newCard],
+      restCardsInDeck: restCardsInDeck
+    }
+  }
   const getCardScore = (hand) => {
     const maxScore = hand.reduce((acc,card) => acc + card.value, 0);
     return maxScore;
@@ -62,6 +97,8 @@
 
   module.exports = {
     getShuffledCards,
+    dealCardForPerson,
+    dealTwoCardsForDealerAndPlayer,
     getCardScore,
     isPlayerHandBust,
     isDealerHandBust,

@@ -8,8 +8,11 @@ const {
     hasDealerCompleteHand,
     formFinalResult,
     getTheFinalPlayerScoreToCompare,
+    dealTwoCardsForDealerAndPlayer,
+    dealCardForPerson,
 } = require('../services/cardsService');
-const { CARDS} = require('../constants/constants')
+
+const { CARDS } = require('../constants/constants')
 
 test('getShuffledCards should return 52 cards', () => {
     const cards = getShuffledCards(CARDS);
@@ -59,7 +62,7 @@ test('isDealerHandBust should return false if score is less than 21', () => {
     expect(isDealerHandBust(cards)).toBe(false);
 });
 
-test('getDealersHandSafe should return safe hand', () => {
+test('getDealersHandSafe should return only visible cards', () => {
     const cards = [
         {name: '7', type: 'spades', value: 7, isHidden: true},
         {name: '8', type: 'spades', value: 8, isHidden: false},
@@ -68,7 +71,7 @@ test('getDealersHandSafe should return safe hand', () => {
     expect(getDealersHandSafe(cards).length).toBe(2);
 });
 
-test('getDealersHandOpened should return opened hand', () => {
+test('getDealersHandOpened should return opened hand, all cards hidden and visible', () => {
     const cards = [
         {name: '7', type: 'spades', value: 7, isHidden: true},
         {name: '8', type: 'spades', value: 8, isHidden: false},
@@ -86,7 +89,7 @@ test('hasDealerCompleteHand should return true if dealer has 17 or more', () => 
     expect(hasDealerCompleteHand(cards)).toBe(true);
 });
 
-test('hasDealerCompleteHand should return false if dealer has less than 17', () => {
+test('hasDealerCompleteHand should return false if dealer has less than 17 in score', () => {
     const cards = [
         {name: '7', type: 'spades', value: 7, isHidden: true},
         {name: '8', type: 'spades', value: 8, isHidden: false},
@@ -94,7 +97,7 @@ test('hasDealerCompleteHand should return false if dealer has less than 17', () 
     expect(hasDealerCompleteHand(cards)).toBe(false);
 });
 
-test('formFinalResult should return correct result', () => {
+test('formFinalResult should filter and return correct result for respose', () => {
     const gameData = {
         dealerHand: [
             {name: '7', type: 'spades', value: 7, isHidden: true},
@@ -110,6 +113,8 @@ test('formFinalResult should return correct result', () => {
             {name: '7', type: 'spades', value: 7},
             {name: '8', type: 'spades', value: 8},
         ],
+        createdAt: '2021-10-10T10:10:10.000Z',
+        updatedAt: '2021-10-10T10:10:10.000Z',
     };
     expect(formFinalResult(gameData)).toEqual({
         dealerHand: [
@@ -152,4 +157,27 @@ test('getTheFinalPlayerScoreToCompare should return the best score option to avo
         {name: 'Ace', type: 'spades', value: 11},
     ];
     expect(getTheFinalPlayerScoreToCompare(cards)).toBe(21);
+});
+
+test( 'dealCardForPerson should return correct result', () => {
+    const cards = [
+        {name: '7', type: 'spades', value: 7},
+        {name: '8', type: 'spades', value: 2},
+        {name: 'Ace', type: 'spades', value: 11},
+        {name: 'Ace', type: 'spades', value: 11},
+    ];
+    const { personsHandWithNewCard, restCardsInDeck } = dealCardForPerson(cards, cards);
+    expect(personsHandWithNewCard.length).toBe(5);
+    expect(restCardsInDeck.length).toBe(3);
+});
+
+test( 'dealTwoCardsForDealerAndPlayer should return correct result', () => {
+    const { dealerHand, playerHand, cardsInDeck } = dealTwoCardsForDealerAndPlayer();
+    expect(dealerHand.length).toBe(2);
+    expect(playerHand.length).toBe(2);
+});
+
+test( 'dealTwoCardsForDealerAndPlayer should deal only 4 cards and the rest of deck should be equel 48', () => {
+    const { cardsInDeck } = dealTwoCardsForDealerAndPlayer();
+    expect(cardsInDeck.length).toBe(48);
 });
