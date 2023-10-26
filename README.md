@@ -22,6 +22,6 @@ To run tests, use the command: `npm test`.
 
 Your Black Jack Back-End is now alive, ready to serve your gaming app and communicate with the powerful MongoDB.
 
-Now jump to the FE part of this game, and follow the instructions in it.
+Now jump to the <a href='https://github.com/aandrushko/black-jack-FE'>FE part</a> of this game, and follow the instructions in it.
 
 🃏 Get Your Game On!
