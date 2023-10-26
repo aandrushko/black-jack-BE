@@ -1,5 +1,4 @@
 const express = require('express');
-const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const gameRouter = require('./routers/gameRoutes');
