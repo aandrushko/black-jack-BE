@@ -17,7 +17,7 @@ const corsOptions = {
     }
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 mongoose.connect(process.env.DB_URI)
     .then (() => {
