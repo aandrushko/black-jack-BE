@@ -1,11 +1,13 @@
-require('dotenv').config();
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+});
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const gameRouter = require('./routers/gameRoutes');
 const app = express();
 
-const whitelist = [`http://localhost:${process.env.FE_PORT}`, `http://127.0.0.1:${process.env.FE_PORT}/`];
+const whitelist = process.env.NODE_ENV === 'dev' ? [`http://localhost:${process.env.FE_PORT}`, `http://127.0.0.1:${process.env.FE_PORT}/`] : [process.env.FE_URL];
 
 const corsOptions = {
     credentials: true,
@@ -18,9 +20,15 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 mongoose.connect(process.env.DB_URI)
-    .then (() => {        
-        app.listen(process.env.PORT);
-        console.log('Database connected')
+    .then (() => {
+        if(process.env.PORT.length > 0){
+            app.listen(process.env.PORT);
+        }
+        else {
+            app.listen();
+        }
+        console.log('Database connected');
+        console.log(`Listening on ${process.env.PORT.length > 0 ? `port ${process.env.PORT}` : `root "/"`}`);
     })
     .catch(e => console.log(e));
 

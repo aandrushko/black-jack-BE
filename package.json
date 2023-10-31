@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --coverage",
-    "start": "node app.js",
-    "start:dev": "nodemon app.js"
+    "start": "node ENV=dev app.js",
+    "start:stage": "NODE_ENV=dev node app.js",
+    "start:dev": " NODE_ENV=dev nodemon app.js",
+    "start:prod": "NODE_ENV=prod node app.js"
   },
   "author": "",
   "license": "ISC",
