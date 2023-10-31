@@ -1,4 +1,5 @@
-🚀 Get Ready to start Black Jack Back-End Service.
+🚀 Get Ready to start Black Jack Back-End Service. 
+
 
 Welcome to the world of Black Jack! This Back-End service powers your gaming app, connecting it seamlessly to a robust MongoDB database. To start your local server and unleash the magic, follow these simple steps:
 
@@ -18,6 +19,7 @@ Welcome to the world of Black Jack! This Back-End service powers your gaming app
  - To run tests, use the command: `npm test`. <br/>
 
 <em>Your Black Jack Back-End is now alive, ready to serve your gaming app and communicate with the powerful MongoDB. <em/> <br/>
+ **Visit <a href="https://bj.codding.fun">bj.codding.fun</a> to start playing!! <br/>**
 
 
 **Briefly about how it works**
@@ -45,6 +47,7 @@ Service also scores aces with a check for the best possible score to avoid a bus
 
 **5.  get_game_details** - the name says about its nature. During the round, we need to know how each event affects the game state.
 
+The service is now deployed at https://black-jack-api.onrender.com/game/ -- feel free to play with it in postman or browser.
 
 See the flow chart to have a better understanding of BS
 [Game schema pdf](https://github.com/aandrushko/black-jack-BE/files/13182195/Flowchart.pdf)
