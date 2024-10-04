@@ -19,7 +19,7 @@ Welcome to the world of Black Jack! This Back-End service powers your gaming app
  - To run tests, use the command: `npm test`. <br/>
 
 <em>Your Black Jack Back-End is now alive, ready to serve your gaming app and communicate with the powerful MongoDB. <em/> <br/>
- **Visit <a href="https://bj.codding.fun">bj.codding.fun</a> to start playing!! <br/>**
+ **Visit <a href="https://bj-app.netlify.app/">bj-app.netlify.app</a> to start playing!! <br/>**
 
 
 **Briefly about how it works**
